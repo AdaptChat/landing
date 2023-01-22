@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar.astro';
 import '../styles/global.css';
 
 export interface Props {
-	title: string;
+  title: string;
   hideNavBar?: boolean;
 }
 
@@ -16,10 +16,10 @@ const SITE_URL = "https://adapt.bobobot.cf/"
 
 <!DOCTYPE html>
 <html lang="en" class="bg-gray-900 text-white">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
     <meta name="title" content={"Adapt \u{2013} A chat platform"}>
@@ -39,11 +39,11 @@ const SITE_URL = "https://adapt.bobobot.cf/"
     <meta property="twitter:description" content={META_MESSAGE}>
     <meta property="twitter:image" content={EXTERNAL_ICON}>
 
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-		<title>{title}</title>
-	</head>
-	<body class="m-0 font-sans">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <title>{title}</title>
+  </head>
+  <body class="m-0 font-sans">
     {hideNavBar ? undefined : <NavBar />}
-		<slot />
-	</body>
+    <slot />
+  </body>
 </html>

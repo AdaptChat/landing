@@ -2,9 +2,9 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	theme: {
-		extend: {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
       animation: {
         'fade-in': 'fade-in 1s ease-in',
       },
@@ -15,20 +15,20 @@ module.exports = {
         'mobile': { max: '767px' },
       },
     },
-		fontFamily: {
-			title: ['"Mona Sans"', "'Inter var'", ...defaultTheme.fontFamily.sans],
-			sans: ["'Inter var'", ...defaultTheme.fontFamily.sans],
-			mono: [
-				'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 
-				'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', 'monospace',
-			],
-		},
+    fontFamily: {
+      title: ['"Mona Sans"', "'Inter var'", ...defaultTheme.fontFamily.sans],
+      sans: ["'Inter var'", ...defaultTheme.fontFamily.sans],
+      mono: [
+        'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 
+        'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', 'monospace',
+      ],
+    },
     keyframes: {
       'fade-in': {
         '0%': { opacity: 0 },
         '100%': { opacity: 1 },
       },
     },
-	},
-	plugins: [],
+  },
+  plugins: [],
 }
