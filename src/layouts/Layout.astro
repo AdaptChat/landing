@@ -1,46 +1,49 @@
 ---
+import NavBar from '../components/NavBar.astro';
+import '../styles/global.css';
+
 export interface Props {
 	title: string;
+  hideNavBar?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, hideNavBar } = Astro.props;
+const META_MESSAGE = "Adapt, Evolve, Chat. Grow a community, connect with your friends, or whatever \
+  you're capable of with Adapt, a lightweight and customizable messaging platform which favors your privacy.";
+const EXTERNAL_ICON = "https://github.com/AdaptChat/branding/blob/main/icons/adapt-fg-opaque.png?raw=true";
+const SITE_URL = "https://adapt.bobobot.cf/"
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="font-sans bg-gray-900 text-white">
+<html lang="en" class="bg-gray-900 text-white">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={"Adapt \u{2013} A chat platform"}>
+    <meta name="description" content={META_MESSAGE}>
+    <meta name="theme-color" content="#0586ff">
+
+    <!-- Open Graph / Facebook / Discord -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={SITE_URL}>
+    <meta property="og:title" content={"Adapt \u{2013} A chat platform"}>
+    <meta property="og:description" content={META_MESSAGE}>
+    <meta property="og:image" content={EXTERNAL_ICON}>
+
+    <!-- Twitter -->
+    <meta property="twitter:url" content={SITE_URL}>
+    <meta property="twitter:title" content={"Adapt \u{2013} A chat platform"}>
+    <meta property="twitter:description" content={META_MESSAGE}>
+    <meta property="twitter:image" content={EXTERNAL_ICON}>
+
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<title>{title}</title>
 	</head>
-	<body class="m-0">
+	<body class="m-0 font-sans">
+    {hideNavBar ? undefined : <NavBar />}
 		<slot />
 	</body>
 </html>
-
-<style is:global>
-	:root {
-		--font-sans: 'Mona Sans', Inter, system-ui, sans-serif;
-		--font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-
-	@font-face {
-    font-family: 'Mona Sans';
-    src:
-      url('Mona-Sans.woff2') format('woff2 supports variations'),
-      url('Mona-Sans.woff2') format('woff2-variations');
-    font-weight: 200 900;
-    font-stretch: 75% 125%;
-	}
-
-  html {
-    font-family: var(--font-sans);
-  }
-
-	code {
-		font-family: var(--font-mono);
-	}
-</style>

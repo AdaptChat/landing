@@ -1,0 +1,28 @@
+---
+import { Astronav, MenuItems, MenuIcon, Dropdown, DropdownItems } from "astro-navbar";
+import NavBarEntry from "./NavBarEntry.astro";
+
+export interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<header class={`lg:flex p-2 gap-5 ${transparent ? "" : "bg-gray-800"}`}>
+  <Astronav> 
+    <div class="flex w-full items-center justify-between">
+      <a href="/" class="px-3">
+        <img src="/favicon.ico" class="w-[32px]" />
+      </a>
+      <div class="block lg:hidden p-3">
+        <MenuIcon class="w-4 h-4 text-white text-opacity-70 hover:text-opacity-100 transition-all" />
+      </div>
+    </div>
+    <MenuItems class="hidden lg:flex p-3">
+      <ul class="flex flex-col lg:flex-row lg:gap-5">
+        <NavBarEntry href="/">Home</NavBarEntry>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</header>
