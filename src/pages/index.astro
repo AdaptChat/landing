@@ -9,8 +9,8 @@ import Layout from '../layouts/Layout.astro';
     <div class="flex flex-col relative overflow-hidden box-border h-full" id="banner">
       <NavBar transparent />
       <canvas id="mesh-gradient" data-transition-in />
-      <div class="motion-safe:animate-fade-in text-center flex flex-col items-center px-24 py-32 mobile:px-16 mobile:py-16">
-        <h1 class="text-8xl font-black pb-8 font-title">Adapt, Evolve, Chat</h1>
+      <div class="motion-safe:animate-fade-in text-center flex flex-col items-center px-24 py-32 mobile:px-12 mobile:py-16">
+        <h1 class="text-8xl mobile-xs:text-7xl font-black pb-8 font-title">Adapt, Evolve, Chat</h1>
         <p class="text-xl text-white text-opacity-60">
           Grow a community, connect with your friends, or whatever you're capable of with Adapt,
           a lightweight and customizable messaging platform which favors your privacy.
@@ -21,22 +21,24 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
     <h1 class="text-center p-8 mt-4 text-4xl font-bold font-title" id="why-adapt">Why Adapt?</h1>
-    <ul class="flex flex-wrap m-auto justify-between md:mx-4 mobile:flex-nowrap mobile:flex-col">
-      <HomepageCard title="Open Source" icon="/assets/code.svg">
-        Adapt is completely open source, so you can see exactly what's going on under the hood.
-        It also means you, along with the community, can contribute to Adapt. This means adding
-        features, patching bugs, and detecting security vulnerabilities is faster and easier.
-      </HomepageCard>
-      <HomepageCard title="Privacy" icon="/assets/lock.svg">
-        Adapt values your privacy. We store as little data as possible, and we don't sell your data
-        to advertisers. If you're ever in doubt, remember that Adapt is open source.
-      </HomepageCard>
-      <HomepageCard title="Fast" icon="/assets/bolt.svg">
-        Adapt's backends are written in <i>Rust</i>, not only ensuring that Adapt is performant,
-        but also preventing less error-prone and vulnerable code from being shipped. And your
-        client can be written in Rust too, if you want.
-      </HomepageCard>
-    </ul>
+    <div class="flex justify-center">
+      <ul class="flex flex-wrap m-auto justify-between max-w-[2000px] md:mx-4 mobile:flex-nowrap mobile:flex-col">
+        <HomepageCard title="Open Source" icon="/icons/code.svg">
+          Adapt is completely open source, so you can see exactly what's going on under the hood.
+          It also means you, along with the community, can contribute to Adapt. This means adding
+          features, patching bugs, and detecting security vulnerabilities is faster and easier.
+        </HomepageCard>
+        <HomepageCard title="Privacy" icon="/icons/lock.svg">
+          Adapt values your privacy. We store as little data as possible, and we don't sell your data
+          to advertisers. If you're ever in doubt, remember that Adapt is open source.
+        </HomepageCard>
+        <HomepageCard title="Fast" icon="/icons/bolt.svg">
+          Adapt's backends are written in <i>Rust</i>, not only ensuring that Adapt is performant,
+          but also preventing less error-prone and vulnerable code from being shipped. And your
+          client can be written in Rust too, if you want.
+        </HomepageCard>
+      </ul>
+    </div>
   </main>
 </Layout>
 

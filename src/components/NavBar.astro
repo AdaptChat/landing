@@ -13,7 +13,8 @@ const { transparent = false } = Astro.props;
   <Astronav> 
     <div class="flex w-full items-center justify-between">
       <a href="/" class="px-3">
-        <img src="/favicon.ico" class="w-[32px]" width="32px" height="32px" alt="Adapt" />
+        <img src="/favicon.ico" class="w-[32px] hidden mobile:block" width="32px" height="32px" alt="Adapt" />
+        <img src="/banner-white-fg.svg" class="h-[32px] hidden md:block" height="32px" alt="Adapt" />
       </a>
       <div class="block lg:hidden p-3">
         <MenuIcon class="w-4 h-4 text-white text-opacity-70 hover:text-opacity-100 transition-all" />

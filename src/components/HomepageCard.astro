@@ -9,16 +9,10 @@ const { title, icon } = Astro.props
 
 <li class="p-6 m-2 lg:w-[min(600px,30vw)] flex flex-col items-center">
   <h2 class="flex items-center gap-4 text-2xl font-bold font-title">
-    <img id="icon" src={icon} alt="" width="26px" height="26px">
+    <img src={icon} alt="" width="26px" height="26px" class="invert">
     {title}
   </h2>
   <p class="py-2 text-center">
     <slot />
   </p>
 </li>
-
-<style>
-  #icon {
-    filter: invert(100%);
-  }
-</style>

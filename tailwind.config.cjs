@@ -10,8 +10,12 @@ module.exports = {
       },
       colors: {
         accent: '#0586ff',
+        gray: {
+          950: '#0a0e16',
+        },
       },
       screens: {
+        'mobile-xs': { max: '369px' },
         'mobile': { max: '767px' },
       },
     },

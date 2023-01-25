@@ -1,0 +1,57 @@
+---
+const SECTIONS = [
+  {
+    title: 'About',
+    links: [
+      {
+        name: 'Homepage',
+        href: '/',
+      },
+    ],
+  },
+  {
+    title: 'Developers',
+    links: [
+      {
+        name: 'GitHub',
+        href: 'https://github.com/AdaptChat',
+      },  
+      {
+        name: 'API Documentation',
+        href: 'https://api.adapt.chat/docs',
+      },
+    ]
+  }
+];
+const SOCIAL_ICON_CLASSES = 'invert opacity-70 hover:opacity-100 transition-all w-8';
+---
+
+<footer class="flex flex-col items-center bg-gray-950 p-8 box-border">
+  <div class="flex flex-wrap justify-center mb-8 gap-16 mobile:flex-col mobile:gap-8">
+    {SECTIONS.map(section => (
+      <div class="flex flex-col">
+        <h3 class="text-center font-bold font-title text-lg p-4">{section.title}</h3>
+        {section.links.map(link => (
+          <a class="text-white text-opacity-70 hover:text-opacity-100 transition-all block mobile:text-center mobile:text-lg" href={link.href}>
+            {link.name}
+          </a>
+        ))}
+      </div>
+    ))}
+  </div>
+  <div class="p-4 flex flex-col items-center md:flex-row">
+    <img src="/banner-white-fg.svg" class="h-[40px] mb-3 md:m-0" height="40px">
+    <div class="mx-5 my-1 border-2 self-stretch rounded opacity-20 hidden md:flex" />
+    <div class="flex items-center gap-4">
+      <a href="https://github.com/AdaptChat">
+        <img src="/icons/github.svg" alt="GitHub" class={SOCIAL_ICON_CLASSES} width="32px">
+      </a>
+      <a href="https://discord.gg/uch68Ujf38">
+        <img src="/icons/discord.svg" alt="Discord" class={SOCIAL_ICON_CLASSES} width="32px">
+      </a>
+    </div>
+  </div>
+  <p class="text-white text-opacity-50">
+    Copyright &copy; 2023 AdaptChat
+  </p>
+</footer>
