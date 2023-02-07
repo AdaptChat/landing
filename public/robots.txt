@@ -3,3 +3,6 @@ crawl-delay: 1
 
 User-agent: *
 Allow: /*
+Disallow:
+
+Sitemap: https://adapt.chat/sitemap-0.xml
