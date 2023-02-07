@@ -15,12 +15,20 @@ import Layout from '../layouts/Layout.astro';
           Grow a community, connect with your friends, or whatever you're capable of with Adapt,
           a lightweight and customizable messaging platform which favors your privacy.
         </p>
-        <a class="mt-12 px-6 py-4 rounded-md text-xl bg-accent bg-opacity-60 hover:bg-opacity-100 transition-all shadow cursor-pointer" href="#why-adapt">
-          Learn More
-        </a>
+        <div class="flex gap-x-4 mt-12">
+          <a class="px-6 py-4 rounded-md text-xl bg-accent bg-opacity-60 hover:bg-opacity-100 transition-all shadow cursor-pointer" href="#why-adapt">
+            Learn More
+          </a>
+          <a 
+            class="px-6 py-4 rounded-md text-xl bg-secondary bg-opacity-60 hover:bg-opacity-100 transition-all shadow cursor-pointer" 
+            href="https://app.adapt.chat"
+          >
+            Launch Adapt
+          </a>
+        </div>
       </div>
     </div>
-    <h1 class="text-center p-8 mt-4 text-4xl font-bold font-title" id="why-adapt">Why Adapt?</h1>
+    <h2 class="text-center p-8 mt-4 text-4xl font-bold font-title" id="why-adapt">Why Adapt?</h2>
     <div class="flex justify-center">
       <ul class="flex flex-wrap m-auto justify-between max-w-[2000px] md:mx-4 mobile:flex-nowrap mobile:flex-col">
         <HomepageCard title="Open Source" icon="/icons/code.svg">
@@ -38,6 +46,21 @@ import Layout from '../layouts/Layout.astro';
           client can be written in Rust too, if you want.
         </HomepageCard>
       </ul>
+    </div>
+    <h2 class="text-center p-8 mt-4 text-4xl font-bold font-title" id="launch">Let's get started.</h2>
+    <div class="flex justify-center mb-12">
+      <div class="flex relative group">
+        <div 
+          class="absolute inset-0 bg-gradient-to-r from-accent to-secondary rounded-md opacity-50 blur transition-all duration-200 group-hover:blur-lg 
+            group-hover:opacity-70 will-change-[filter]" 
+        />
+        <a 
+          class="relative px-6 py-4 rounded-md text-xl transition-all cursor-pointer bg-gradient-to-r w-full h-full from-accent to-secondary" 
+          href="https://app.adapt.chat"
+        >
+          Launch in Browser
+        </a>
+      </div>
     </div>
   </main>
 </Layout>

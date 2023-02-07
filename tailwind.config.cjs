@@ -10,6 +10,7 @@ module.exports = {
       },
       colors: {
         accent: '#0586ff',
+        secondary: '#be3dff',
         gray: {
           950: '#0a0e16',
         },

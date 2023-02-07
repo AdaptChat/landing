@@ -10,6 +10,19 @@ const SECTIONS = [
     ],
   },
   {
+    title: 'App',
+    links: [
+      {
+        name: 'Download',
+        href: '/download',
+      },
+      {
+        name: 'Web App',
+        href: 'https://app.adapt.chat',
+      },
+    ]
+  },
+  {
     title: 'Developers',
     links: [
       {
@@ -21,6 +34,19 @@ const SECTIONS = [
         href: 'https://api.adapt.chat/docs',
       },
     ]
+  },
+  {
+    title: 'Legal',
+    links: [
+      {
+        name: 'Privacy Policy',
+        href: '/privacy',
+      },
+      {
+        name: 'Terms of Service',
+        href: '/terms',
+      },
+    ]
   }
 ];
 const SOCIAL_ICON_CLASSES = 'invert opacity-70 hover:opacity-100 transition-all w-8';
@@ -29,10 +55,10 @@ const SOCIAL_ICON_CLASSES = 'invert opacity-70 hover:opacity-100 transition-all 
 <footer class="flex flex-col items-center bg-gray-950 p-8 box-border">
   <div class="flex flex-wrap justify-center mb-8 gap-16 mobile:flex-col mobile:gap-8">
     {SECTIONS.map(section => (
-      <div class="flex flex-col">
-        <h3 class="text-center font-bold font-title text-lg p-4">{section.title}</h3>
+      <div class="flex flex-col items-center">
+        <h3 class="text-white/40 font-bold font-title py-4 uppercase">{section.title}</h3>
         {section.links.map(link => (
-          <a class="text-white text-opacity-70 hover:text-opacity-100 transition-all block mobile:text-center mobile:text-lg" href={link.href}>
+          <a class="text-white text-opacity-70 hover:text-opacity-100 transition-all block mobile:text-lg" href={link.href}>
             {link.name}
           </a>
         ))}
