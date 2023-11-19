@@ -8,9 +8,10 @@ export interface Props {
   hideNavBar?: boolean;
   metaTitle?: string;
   metaSiteUrl?: string;
+  center?: boolean;
 }
 
-const { title, hideNavBar, metaTitle, metaSiteUrl } = Astro.props;
+const { title, hideNavBar, metaTitle, metaSiteUrl, center } = Astro.props;
 const META_TITLE = metaTitle ?? "Adapt \u{2013} A chat platform";
 const META_MESSAGE = "Adapt, Evolve, Chat. Grow a community, connect with your friends, or whatever \
   you're capable of with Adapt, a lightweight and customizable messaging platform which favors your privacy.";
@@ -48,7 +49,7 @@ const SITE_URL = metaSiteUrl ?? "https://adapt.chat"
   </head>
   <body class="m-0 font-sans flex flex-col min-h-[100vh]">
     {hideNavBar ? undefined : <NavBar />}
-    <div class="flex-grow flex flex-col">
+    <div class={`flex-grow ${center ? 'flex flex-col' : ''}`}>
       <slot />
     </div>
     <Footer />
