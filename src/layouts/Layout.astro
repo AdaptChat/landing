@@ -6,13 +6,16 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   hideNavBar?: boolean;
+  metaTitle?: string;
+  metaSiteUrl?: string;
 }
 
-const { title, hideNavBar } = Astro.props;
+const { title, hideNavBar, metaTitle, metaSiteUrl } = Astro.props;
+const META_TITLE = metaTitle ?? "Adapt \u{2013} A chat platform";
 const META_MESSAGE = "Adapt, Evolve, Chat. Grow a community, connect with your friends, or whatever \
   you're capable of with Adapt, a lightweight and customizable messaging platform which favors your privacy.";
 const EXTERNAL_ICON = "https://github.com/AdaptChat/branding/blob/main/icons/adapt-fg-opaque.png?raw=true";
-const SITE_URL = "https://adapt.chat"
+const SITE_URL = metaSiteUrl ?? "https://adapt.chat"
 ---
 
 <!DOCTYPE html>
@@ -23,20 +26,20 @@ const SITE_URL = "https://adapt.chat"
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content={"Adapt \u{2013} A chat platform"}>
+    <meta name="title" content={META_TITLE}>
     <meta name="description" content={META_MESSAGE}>
     <meta name="theme-color" content="#0a0e16">
 
     <!-- Open Graph / Facebook / Discord -->
     <meta property="og:type" content="website">
     <meta property="og:url" content={SITE_URL}>
-    <meta property="og:title" content={"Adapt \u{2013} A chat platform"}>
+    <meta property="og:title" content={META_TITLE}>
     <meta property="og:description" content={META_MESSAGE}>
     <meta property="og:image" content={EXTERNAL_ICON}>
 
     <!-- Twitter -->
     <meta property="twitter:url" content={SITE_URL}>
-    <meta property="twitter:title" content={"Adapt \u{2013} A chat platform"}>
+    <meta property="twitter:title" content={META_TITLE}>
     <meta property="twitter:description" content={META_MESSAGE}>
     <meta property="twitter:image" content={EXTERNAL_ICON}>
 
@@ -45,7 +48,7 @@ const SITE_URL = "https://adapt.chat"
   </head>
   <body class="m-0 font-sans flex flex-col min-h-[100vh]">
     {hideNavBar ? undefined : <NavBar />}
-    <div class="flex-grow">
+    <div class="flex-grow flex flex-col">
       <slot />
     </div>
     <Footer />
