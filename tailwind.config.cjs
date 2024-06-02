@@ -21,10 +21,10 @@ module.exports = {
       },
     },
     fontFamily: {
-      title: ['"Mona Sans"', "'Inter var'", ...defaultTheme.fontFamily.sans],
-      sans: ["'Inter var'", ...defaultTheme.fontFamily.sans],
+      title: ['"Plus Jakarta Sans"', "Geist", ...defaultTheme.fontFamily.sans],
+      sans: ["Geist", ...defaultTheme.fontFamily.sans],
       mono: [
-        'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono', 
+        '"Geist Mono"', 'Menlo', 'Monaco', 'Lucida Console', 'Liberation Mono',
         'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', 'monospace',
       ],
     },
@@ -35,5 +35,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
