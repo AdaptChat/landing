@@ -86,9 +86,7 @@ config.daisyui = {
       accent,
       neutral: '#4c4c5b',
       error: '#ee3434',
-      base: {
-        content: '#ffffff',
-      },
+      'base-content': '#ffffff',
       '.btn': {
         'text-transform': 'initial',
       },
