@@ -6,7 +6,7 @@ const {frontmatter} = Astro.props;
 
 <Layout title={frontmatter.title}>
   <main class="flex flex-col flex-grow items-center">
-    <div class="self-center my-[5vw] w-[76ch] mobile:w-[90vw] prose prose-invert lg:prose-xl prose-headings:font-title">
+    <div class="self-center my-[5vw] w-[76ch] mobile:w-[90vw] prose dark:prose-invert lg:prose-lg 2xl:prose-xl prose-headings:font-title">
       <slot />
     </div>
   </main>
