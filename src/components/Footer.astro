@@ -54,6 +54,7 @@ const SECTIONS = [
   }
 ];
 const SOCIAL_ICON_CLASSES = 'invert opacity-70 hover:opacity-100 transition-all w-8';
+const YEAR = new Date(Date.now()).getFullYear()
 ---
 
 <footer class="flex flex-col items-center bg-gray-950 p-8 box-border">
@@ -82,6 +83,6 @@ const SOCIAL_ICON_CLASSES = 'invert opacity-70 hover:opacity-100 transition-all 
     </div>
   </div>
   <p class="text-white text-opacity-50">
-    Copyright &copy; 2023 Adapt
+    Copyright &copy; {YEAR} Adapt
   </p>
 </footer>

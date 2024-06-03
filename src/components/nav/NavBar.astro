@@ -1,0 +1,71 @@
+---
+import VerticalLink from "./VerticalLink.astro";
+import HorizontalLink from "./HorizontalLink.astro";
+
+export type Links = (
+  {
+    name: string,
+    href: string,
+  } | {
+    name: string,
+    links: Links,
+  }
+)[]
+
+const LINKS: Links = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'Download',
+    href: '/download',
+  },
+  {
+    name: 'More',
+    links: [
+      {
+        name: 'Terms of Service',
+        href: '/terms',
+      },
+      {
+        name: 'Privacy Policy',
+        href: '/privacy',
+      },
+    ]
+  }
+]
+
+export interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+---
+
+<header class:list={["navbar", transparent ? 'bg-transparent' : 'bg-gray-950']}>
+  <div class="navbar-start">
+    <div class="dropdown">
+      <label tabIndex={0} class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+      </label>
+      <ul tabIndex={0} class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-gray-950">
+        {LINKS.map(link => <VerticalLink link={link} />)}
+      </ul>
+    </div>
+    <a class="btn btn-ghost flex gap-x-2" href="/">
+      <img src="/favicon.ico" class="w-8 h-8" alt="Adapt Icon" />
+      <span class="normal-case text-xl font-title hidden lg:flex">Adapt</span>
+    </a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      {LINKS.map(link => <HorizontalLink link={link} />)}
+    </ul>
+  </div>
+  <div class="navbar-end gap-x-2">
+    <a class="btn btn-primary" href="//app.adapt.chat">Launch Adapt</a>
+  </div>
+</header>

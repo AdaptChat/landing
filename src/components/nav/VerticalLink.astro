@@ -1,0 +1,26 @@
+---
+type Link = {
+  name: string,
+  href: string,
+} | {
+  name: string,
+  links: Link[],
+}
+
+interface Props extends Link {}
+
+const { link } = Astro.props
+---
+
+<li>
+  {"href" in link ? (
+    <a class="!bg-base-content !bg-opacity-0 hover:!bg-opacity-10 py-2" href={link.href}>{link.name}</a>
+  ) : (
+    <>
+      <a>{link.name}</a>
+      <ul>
+        {link.links.map(link => <Astro.self link={link} />)}
+      </ul>
+    </>
+  )}
+</li>

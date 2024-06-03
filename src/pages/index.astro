@@ -1,5 +1,5 @@
 ---
-import NavBar from '../components/NavBar.astro';
+import NavBar from '../components/nav/NavBar.astro';
 import HomepageCard from '../components/HomepageCard.astro';
 import Layout from '../layouts/Layout.astro';
 ---
@@ -19,8 +19,8 @@ import Layout from '../layouts/Layout.astro';
           <a class="px-6 py-4 rounded-md text-xl bg-accent bg-opacity-60 hover:bg-opacity-100 transition-all shadow cursor-pointer" href="#why-adapt">
             Learn More
           </a>
-          <a 
-            class="px-6 py-4 rounded-md text-xl bg-secondary bg-opacity-60 hover:bg-opacity-100 transition-all shadow cursor-pointer" 
+          <a
+            class="px-6 py-4 rounded-md text-xl bg-secondary bg-opacity-60 hover:bg-opacity-100 transition-all shadow cursor-pointer"
             href="https://app.adapt.chat"
           >
             Launch Adapt
@@ -47,18 +47,31 @@ import Layout from '../layouts/Layout.astro';
         </HomepageCard>
       </ul>
     </div>
-    <h2 class="text-center p-8 mt-4 text-4xl font-bold font-title" id="launch">Let's get started.</h2>
-    <div class="flex justify-center mb-12">
-      <div class="flex relative group">
-        <div 
-          class="absolute inset-0 bg-gradient-to-r from-accent to-secondary rounded-md opacity-50 blur transition-all duration-200 group-hover:blur-lg 
-            group-hover:opacity-70 will-change-[filter]" 
-        />
-        <a 
-          class="relative px-6 py-4 rounded-md text-xl transition-all cursor-pointer bg-gradient-to-r w-full h-full from-accent to-secondary" 
-          href="https://app.adapt.chat"
+
+    <div class="flex flex-col items-center pt-24 pb-16">
+      <h2 class="text-center text-3xl font-bold font-title" id="launch">Let's get started.</h2>
+      <div class="mt-8 relative group">
+        <div
+          class="px-8 py-4 absolute btn btn-lg text-xl font-bold rounded-lg blur group-hover:blur-lg
+            will-change-[filter] bg-gradient-to-r from-primary to-secondary inset-0 font-title"
         >
-          Launch in Browser
+          Launch Adapt
+        </div>
+        <a
+          class="p-0.5 relative btn btn-lg border-none inline-flex items-center justify-center font-bold overflow-hidden rounded-lg"
+          href="//app.adapt.chat"
+        >
+          <span class="w-full h-full bg-gradient-to-br from-primary to-secondary absolute" />
+          <span class="relative flex items-center justify-center w-full h-full px-8 py-4 transition-all ease-out
+            bg-gray-900 rounded-md group-hover:bg-opacity-0 duration-400"
+          >
+            <span
+              class="relative bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent
+                group-hover:from-primary-100 group-hover:to-secondary-100 text-xl mobile-xs:text-lg font-title"
+            >
+              Launch Adapt
+            </span>
+          </span>
         </a>
       </div>
     </div>
@@ -89,9 +102,9 @@ import Layout from '../layouts/Layout.astro';
     opacity: 0.5;
     flex-grow: 1;
     z-index: -1;
-    --gradient-color-1: #0586ff; 
-    --gradient-color-2: #9500f2; 
-    --gradient-color-3: #ff3d94;  
+    --gradient-color-1: #0586ff;
+    --gradient-color-2: #9500f2;
+    --gradient-color-3: #ff3d94;
     --gradient-color-4: #0056c6;
   }
 </style>
