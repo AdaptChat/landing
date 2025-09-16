@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Download Adapt">
+  <main class="max-w-6xl mx-auto py-16 px-4">
+    <h1 class="text-center text-5xl font-bold font-title mb-4">
+      Download Adapt
+    </h1>
+    <p class="text-center text-gray-400 mb-12 text-lg">
+      Get the latest desktop version of Adapt for your platform.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Windows -->
+      <div
+        class="bg-gradient-to-br from-blue-700 to-blue-900 text-white rounded-2xl p-6 flex flex-col gap-4 transform transition-transform hover:-translate-y-2 hover:shadow-2xl"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="https://upload.wikimedia.org /wikipedia/commons/5/5f/Windows_logo_-_2012.svg"
+              class="w-6 h-6"
+              alt="Windows Icon"
+            />
+          </div>
+          <h3 class="text-2xl font-semibold">Windows</h3>
+        </div>
+        <ul class="list-disc list-inside ml-5 text-sm text-gray-200 space-y-1">
+          <li>
+            <a
+              class="hover:underline text-white"
+              href="https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe"
+              >x86_64 (64 bit)</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:underline text-white"
+              href="https://download.adapt.chat/webclient/windows-i686/Adapt-setup.exe"
+              >i686 (32 bit)</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- MacOS -->
+      <div
+        class="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-2xl p-6 flex flex-col gap-4 transform transition-transform hover:-translate-y-2 hover:shadow-2xl"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Apple_logo_white.svg/640px-Apple_logo_white.svg.png"
+              class="w-6 h-6"
+              alt="Mac Icon"
+            />
+          </div>
+          <h3 class="text-2xl font-semibold">MacOS</h3>
+        </div>
+        <ul class="list-disc list-inside ml-5 text-sm text-gray-300 space-y-2">
+          <li>
+            Intel x86_64:
+            <a
+              class="text-primary-400 hover:underline"
+              href="https://download.adapt.chat/webclient/darwin-x86_64/Adapt.app.zip"
+              >.app bundle</a
+            > |
+            <a
+              class="text-primary-400 hover:underline"
+              href="https://download.adapt.chat/webclient/darwin-x86_64/Adapt-installer.dmg"
+              >.dmg installer</a
+            >
+          </li>
+          <li>
+            Apple Silicon aarch64:
+            <a
+              class="text-primary-400 hover:underline"
+              href="https://download.adapt.chat/webclient/darwin-aarch64/Adapt.app.zip"
+              >.app bundle</a
+            > |
+            <a
+              class="text-primary-400 hover:underline"
+              href="https://download.adapt.chat/webclient/darwin-aarch64/Adapt-installer.dmg"
+              >.dmg installer</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Linux -->
+      <div
+        class="bg-gradient-to-br from-green-700 to-green-900 text-white rounded-2xl p-6 flex flex-col gap-4 transform transition-transform hover:-translate-y-2 hover:shadow-2xl"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png"
+              class="w-6 h-6"
+              alt="Linux Icon"
+            />
+          </div>
+          <h3 class="text-2xl font-semibold">Linux</h3>
+        </div>
+        <ul class="list-disc list-inside ml-5 text-sm text-gray-200 space-y-1">
+          <li>
+            <a
+              class="hover:underline text-white"
+              href="https://download.adapt.chat/webclient/linux-x86_64/Adapt.deb"
+              >.deb</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:underline text-white"
+              href="https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage"
+              >AppImage</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</Layout>
