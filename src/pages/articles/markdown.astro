@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Examples
+const examples = [
+  {
+    id: "headings",
+    title: "Headings",
+    code: `# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6`,
+  },
+  {
+    id: "bold-italic",
+    title: "Bold & Italic",
+    code: `**Bold**
+*Italic*
+**Combine *both* styles**`,
+  },
+  {
+    id: "lists",
+    title: "Lists",
+    code: `- Item 1
+- Item 2
+  - Nested item
+1. First
+2. Second
+3. Third`,
+  },
+  {
+    id: "links-images",
+    title: "Links & Images",
+    code: `[Adapt Website](https://adapt.chat)
+![Logo](https://adapt.chat/favicon.ico)`,
+  },
+  {
+    id: "code",
+    title: "Code",
+    code: "`Inline code` and blocks:\n```js\nconsole.log(\"Hello Adapt!\");\n```",
+  },
+  {
+    id: "blockquotes",
+    title: "Blockquotes",
+    code: `> This is a quote
+> You can span multiple lines`,
+  },
+  {
+    id: "spoilers-highlights",
+    title: "Spoilers & Highlights",
+    code: `||This is a spoiler||
+!!This is highlighted!!`,
+  },
+  {
+    id: "mentions-emojis",
+    title: "Mentions & Emojis",
+    code: `<@12345678901234>  // User mention
+<#12345678901234>  // Channel mention
+:smile:            // Unicode emoji
+:12345678901234:   // Custom emoji`,
+  },
+  {
+    id: "math-subtext",
+    title: "Math, Underlines & Subtext",
+    code: `$$E=mc^2$$     // Block math
+$E=mc^2$       // Inline math
+__Underlined text__ // Underline
+-# Subtext example  // Subtext`,
+  },
+  {
+    id: "styled-text",
+    title: "Text Styling & Colors",
+    code: `[Red text]{color=red}
+[Green on black]{color=#00ff00,bg=black}
+[Highlighted]{bg=yellow}
+[Blue on gray]{color=blue,bg=#f0f0f0}`,
+  },
+];
+---
+
+<Layout title="Markdown Guide">
+  <div class="relative overflow-hidden h-full" id="banner">
+    <canvas id="mesh-gradient" data-transition-in />
+    <div class="motion-safe:animate-fade-in text-center flex flex-col items-center px-24 py-32 mobile:px-12 mobile:py-16">
+      <h1 class="text-7xl font-black pb-4 font-title">Markdown Guide</h1>
+      <p class="text-xl text-white text-opacity-70 max-w-3xl">
+        Learn how to write in Markdown for Adapt messages. 
+      </p>
+    </div>
+  </div>
+
+  <div class="flex max-w-6xl mx-auto py-16 gap-12 px-6 mobile:px-4 flex-col md:flex-row">
+    <!-- Sidebar -->
+    <aside class="hidden md:flex flex-col w-60 sticky top-32 h-max bg-bg-2 p-6 rounded-2xl shadow-md gap-4">
+      <h2 class="font-bold text-xl mb-4">Contents</h2>
+      <ul class="flex flex-col gap-2 text-white text-opacity-80">
+        {examples.map(example => (
+          <li><a href={`#${example.id}`} class="hover:text-accent transition">{example.title}</a></li>
+        ))}
+      </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 flex flex-col gap-16">
+      {examples.map(example => (
+        <section id={example.id} class="flex flex-col gap-4">
+          <h2 class="text-4xl font-bold border-b border-accent pb-2">{example.title}</h2>
+          <p class="font-semibold pt-2">Code:</p>
+          <pre class="bg-bg-2 p-4 rounded-lg overflow-x-auto text-sm"><code>{example.code}</code></pre>
+        </section>
+      ))}
+    </main>
+  </div>
+</Layout>
+
+<script>
+import { Gradient } from 'whatamesh';
+
+const gradient = new Gradient();
+gradient.initGradient('#mesh-gradient');
+
+const banner = document.getElementById('banner');
+banner.addEventListener('mouseover', () => gradient.play());
+banner.addEventListener('mouseout', () => gradient.pause());
+</script>
+
+<style>
+#mesh-gradient {
+  top: 0;
+  left: 0;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
+  --gradient-color-1: #0586ff;
+  --gradient-color-2: #9500f2;
+  --gradient-color-3: #ff3d94;
+  --gradient-color-4: #0056c6;
+}
+
+pre {
+  background-color: #1e1e2f;
+  color: #fff;
+  font-family: 'Fira Code', monospace;
+}
+</style>
