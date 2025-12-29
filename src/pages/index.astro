@@ -6,61 +6,96 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Adapt" hideNavBar>
   <main class="m-auto">
-    <div class="flex flex-col relative overflow-hidden box-border h-full" id="banner">
+    <div class="flex flex-col relative box-border h-full min-h-screen" id="banner">
       <NavBar transparent />
       <canvas id="mesh-gradient" data-transition-in />
-      <div class="motion-safe:animate-fade-in text-center flex flex-col items-center px-24 py-32 mobile:px-12 mobile:py-16">
-        <h1 class="text-8xl mobile-xs:text-7xl font-black pb-8 font-title">Adapt, Evolve, Chat</h1>
-        <p class="text-xl text-white text-opacity-60">
-          Grow a community, connect with your friends, or whatever you're capable of with Adapt,
-          a lightweight and customizable messaging platform which favors your privacy.
-        </p>
-        <div class="flex gap-4 mt-12 mobile:flex-col">
-          <a class="btn btn-secondary btn-lg" href="#why-adapt">Learn More</a>
-          <a class="btn btn-primary btn-lg" href="https://app.adapt.chat">Launch Adapt</a>
+      <div class="motion-safe:animate-fade-in flex flex-col lg:flex-row items-center justify-between gap-12 px-24 py-32 mobile:px-12 mobile:py-16 max-w-[1400px] mx-auto w-full relative z-10 my-auto">
+        <div class="flex-1 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <!-- <div class="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 mb-6">
+            <span class="text-sm font-semibold bg-gradient-to-r from-primary-300 to-secondary-300 bg-clip-text text-transparent">Adapt!</span>
+          </div> -->
+          <h1 class="text-7xl lg:text-8xl mobile-xs:text-6xl font-black pb-6 font-title leading-tight">
+            Adapt, Evolve,
+            <br/>
+            <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Chat</span>
+          </h1>
+          <p class="text-xl text-white/70 max-w-xl leading-relaxed">
+            Grow a community, connect with your friends, or whatever you're capable of with Adapt,
+            a lightweight and customizable messaging platform that favors your privacy.
+          </p>
+          <div class="flex gap-4 mt-10 mobile:flex-col">
+            <a class="btn btn-primary btn-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all" href="https://app.adapt.chat">
+              Launch Adapt
+            </a>
+            <a class="btn btn-secondary btn-lg" href="#why-adapt">Learn More</a>
+          </div>
+        </div>
+        <div class="flex-1 w-full max-w-2xl relative">
+          <div class="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
+            <img
+              src="/landing-demo.png"
+              alt="Adapt Demo"
+              class="w-full h-auto object-cover relative z-[1]"
+            >
+            <div
+              class="absolute inset-0 pointer-events-none mix-blend-overlay opacity-60
+                bg-gradient-to-br from-primary/40 via-gray-900/10 to-secondary/40"
+            />
+            <div
+              class="absolute inset-0 pointer-events-none"
+              style="mask-image: radial-gradient(120% 120% at 50% 50%, black 55%, transparent 100%); 
+                -webkit-mask-image: radial-gradient(120% 120% at 50% 50%, black 55%, transparent 100%);"
+            />
+          </div>
+          <div class="absolute -inset-x-16 -bottom-8 h-40 bg-gradient-to-t from-primary/25 to-transparent blur-3xl opacity-50"></div>
         </div>
       </div>
     </div>
-    <h2 class="text-center p-8 mt-4 text-4xl font-bold font-title" id="why-adapt">Why Adapt?</h2>
-    <div class="flex justify-center">
-      <ul class="flex flex-wrap m-auto justify-between max-w-[2000px] md:mx-4 mobile:flex-nowrap mobile:flex-col">
-        <HomepageCard title="Open Source" icon="/icons/code.svg">
-          Adapt is completely open source, so you can see exactly what's going on under the hood.
-          It also means you, along with the community, can contribute to Adapt. This means adding
-          features, patching bugs, and detecting security vulnerabilities is faster and easier.
-        </HomepageCard>
-        <HomepageCard title="Privacy" icon="/icons/lock.svg">
-          Adapt values your privacy. We store as little data as possible, and we don't sell your data
-          to advertisers. If you're ever in doubt, remember that Adapt is open source.
-        </HomepageCard>
-        <HomepageCard title="Fast" icon="/icons/bolt.svg">
-          Adapt's backends are written in <i>Rust</i>, not only ensuring that Adapt is performant,
-          but also preventing less error-prone and vulnerable code from being shipped. And your
-          client can be written in Rust too, if you want.
-        </HomepageCard>
-      </ul>
+    <div class="py-24 bg-gradient-to-b from-transparent via-gray-900/50 to-transparent">
+      <h2 class="text-center p-8 text-5xl font-bold font-title mb-8" id="why-adapt">
+        Why <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Adapt?</span>
+      </h2>
+      <div class="flex justify-center">
+        <ul class="flex flex-wrap m-auto justify-center gap-6 max-w-[1400px] px-4 mobile:flex-nowrap mobile:flex-col">
+          <HomepageCard title="Open Source" icon="/icons/code.svg">
+            Adapt is completely open source, so you can see exactly what's going on under the hood.
+            It also means you, along with the community, can contribute to Adapt. This means adding
+            features, patching bugs, and detecting security vulnerabilities is faster and easier.
+          </HomepageCard>
+          <HomepageCard title="Privacy" icon="/icons/lock.svg">
+            Adapt values your privacy. We store as little data as possible, and we don't sell your data
+            to advertisers. If you're ever in doubt, remember that Adapt is open source.
+          </HomepageCard>
+          <HomepageCard title="Fast" icon="/icons/bolt.svg">
+            Adapt's backends are written in <i>Rust</i>, not only ensuring that Adapt is performant,
+            but also preventing less error-prone and vulnerable code from being shipped. And your
+            client can be written in Rust too, if you want.
+          </HomepageCard>
+        </ul>
+      </div>
     </div>
 
-    <div class="flex flex-col items-center pt-24 pb-16">
-      <h2 class="text-center text-3xl font-bold font-title" id="launch">Let's get started.</h2>
-      <div class="mt-8 relative group">
+    <div class="flex flex-col items-center py-32 bg-gradient-to-b from-transparent to-gray-900/30">
+      <h2 class="text-center text-5xl font-bold font-title mb-4" id="launch">Ready to get started?</h2>
+      <p class="text-center text-white/60 mb-12 text-lg">Join thousands of users already using Adapt</p>
+      <div class="mt-4 relative group">
         <div
-          class="px-8 py-4 absolute btn btn-lg text-xl font-bold rounded-lg blur group-hover:blur-lg
-            will-change-[filter] bg-gradient-to-r from-primary to-secondary inset-0 font-title"
+          class="px-10 py-5 absolute btn btn-lg text-xl font-bold rounded-xl blur-md group-hover:blur-lg
+            will-change-[filter] bg-gradient-to-r from-primary to-secondary inset-0 font-title transition-all"
         >
           Launch Adapt
         </div>
         <a
-          class="p-0.5 relative btn btn-lg border-none inline-flex items-center justify-center font-bold overflow-hidden rounded-lg"
+          class="p-0.5 relative btn btn-lg border-none inline-flex items-center justify-center font-bold overflow-hidden rounded-xl"
           href="//app.adapt.chat"
         >
           <span class="w-full h-full bg-gradient-to-br from-primary to-secondary absolute" />
-          <span class="relative flex items-center justify-center w-full h-full px-8 py-4 transition-all ease-out
-            bg-gray-900 rounded-md group-hover:bg-opacity-0 duration-400"
+          <span class="relative flex items-center justify-center w-full h-full px-10 py-5 transition-all ease-out
+            bg-gray-900 rounded-xl group-hover:bg-opacity-0 duration-400"
           >
             <span
               class="relative bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent
-                group-hover:from-primary-100 group-hover:to-secondary-100 text-xl mobile-xs:text-lg font-title"
+                group-hover:from-primary-100 group-hover:to-secondary-100 text-2xl mobile-xs:text-xl font-title"
             >
               Launch Adapt
             </span>
@@ -91,10 +126,12 @@ import Layout from '../layouts/Layout.astro';
     align-items: stretch;
     justify-content: stretch;
     width: 100%;
-    height: 100%;
+    height: 150%;
     opacity: 0.5;
     flex-grow: 1;
     z-index: -1;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
     --gradient-color-1: #0586ff;
     --gradient-color-2: #9500f2;
     --gradient-color-3: #ff3d94;

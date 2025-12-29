@@ -4,15 +4,17 @@ export interface Props {
     icon: string;
 }
 
-const { title, icon } = Astro.props
+const { title, icon } = Astro.props as Props
 ---
 
-<li class="p-6 m-2 lg:w-[min(600px,30vw)] flex flex-col items-center">
-  <h2 class="flex items-center gap-4 text-2xl font-bold font-title">
-    <img src={icon} alt="" width="26px" height="26px" class="invert">
+<li class="p-8 m-0 lg:w-[min(420px,30vw)] flex flex-col items-center rounded-2xl border border-white/10 bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm">
+  <div class="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center">
+    <img src={icon} alt="" width="32px" height="32px" class="invert opacity-90">
+  </div>
+  <h2 class="text-2xl font-bold font-title mb-4">
     {title}
   </h2>
-  <p class="py-2 text-center">
+  <p class="text-center text-white/70 leading-relaxed">
     <slot />
   </p>
 </li>

@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const DOWNLOADS = [
+  {
+    platform: 'Windows',
+    architecture: 'x86_64 (64-bit)',
+    format: '.exe',
+    details: '',
+    href: 'https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe',
+  },
+  {
+    platform: 'Windows',
+    architecture: 'i686 (32-bit)',
+    format: '.exe',
+    details: '',
+    href: 'https://download.adapt.chat/webclient/windows-i686/Adapt-setup.exe',
+  },
+  {
+    platform: 'macOS',
+    architecture: 'Intel (x86_64)',
+    format: '.app.zip',
+    details: 'App bundle',
+    href: 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt.app.zip',
+  },
+  {
+    platform: 'macOS',
+    architecture: 'Intel (x86_64)',
+    format: '.dmg',
+    details: 'Installer',
+    href: 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt-installer.dmg',
+  },
+  {
+    platform: 'macOS',
+    architecture: 'Apple Silicon (aarch64)',
+    format: '.app.zip',
+    details: 'App bundle',
+    href: 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt.app.zip',
+  },
+  {
+    platform: 'macOS',
+    architecture: 'Apple Silicon (aarch64)',
+    format: '.dmg',
+    details: 'Installer',
+    href: 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt-installer.dmg',
+  },
+  {
+    platform: 'Linux',
+    architecture: 'x86_64 (AMD64)',
+    format: '.deb',
+    details: 'Ubuntu, Debian',
+    href: 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.deb',
+  },
+  {
+    platform: 'Linux',
+    architecture: 'x86_64 (AMD64)',
+    format: 'AppImage',
+    details: 'Universal',
+    href: 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage',
+  },
+] as const;
+---
+
+<Layout title="Download Adapt">
+  <main class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
+    <div class="max-w-[1400px] mx-auto px-6 py-16">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-6xl font-black font-title mb-4">
+          Download <span class="bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent">Adapt</span>
+        </h1>
+        <p class="text-xl text-white/70 max-w-2xl mx-auto">
+            This page lists binaries derived from the 
+            <a class="underline-offset-2 underline" href="https://github.com/adaptchat/webclient">web-based client</a>. 
+        </p>
+      </div>
+
+      <!-- Recommended Download Section -->
+      <div class="mb-24 flex justify-center" id="recommended-section">
+        <a id="recommended-btn" class="btn btn-primary btn-lg" href="#">
+          <span>Download for <span id="recommended-text">Your System</span></span>
+        </a>
+      </div>
+
+      <!-- All Platforms Section -->
+      <div class="mx-4">
+        <h2 class="text-4xl font-bold font-title mb-6 text-center">All Desktop Builds</h2>
+        
+        <div class="overflow-x-auto border border-white/10 rounded-xl mb-4">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-white/10 bg-gray-800/50">
+                <th class="text-left px-6 py-4 font-semibold font-title">Platform</th>
+                <th class="text-left px-6 py-4 font-semibold font-title">Architecture</th>
+                <th class="text-left px-6 py-4 font-semibold font-title">Format</th>
+                <th class="text-left px-6 py-4 font-semibold font-title">Details</th>
+                <th class="text-right px-6 py-4 font-semibold font-title"></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              {DOWNLOADS.map((d) => (
+                <tr class="hover:bg-gray-800/30 transition-colors">
+                  <td class="px-6 py-4 font-medium">{d.platform}</td>
+                  <td class="px-6 py-4 text-white/70">{d.architecture}</td>
+                  <td class="px-6 py-4 font-mono text-sm text-white/60">{d.format}</td>
+                  <td class="px-6 py-4 text-white/60 text-sm">{d.details}</td>
+                  <td class="px-6 py-4 text-right">
+                    <a href={d.href} class="btn btn-neutral btn-sm">Download</a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <!-- Auto-Update Warning -->
+        <p class="p-4 rounded-xl border border-yellow-600/30 bg-yellow-600/10 text-sm text-white/80 text-center">
+          Note: Desktop clients do not auto-update yet, you'll have to reinstall to update Adapt.
+        </p>
+      </div>
+
+      <!-- Web App Section -->
+      <h3 class="text-2xl font-bold font-title mt-20 mb-2 text-center">Prefer the Web App?</h3>
+      <p class="text-white/70 mb-6 text-center">
+        Use the official web-based client directly in your browser without any installation.
+      </p>
+
+      <div class="flex flex-col items-center gap-6 mb-16">
+        <a href="https://app.adapt.chat" class="text-center items-center gap-2 btn btn-primary">
+          Open Web Client
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Detect user's operating system and recommend appropriate download
+  function getRecommendedDownload(): void {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const btn = document.getElementById('recommended-btn') as HTMLAnchorElement | null;
+    const text = document.getElementById('recommended-text') as HTMLSpanElement | null;
+    
+    if (!btn || !text) return;
+
+    let href = '';
+    let label = '';
+
+    if (userAgent.includes('win')) {
+      // Windows
+      if (userAgent.includes('wow64') || userAgent.includes('x64') || userAgent.includes('x86_64')) {
+        href = 'https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe';
+        label = 'Windows';
+      } else {
+        href = 'https://download.adapt.chat/webclient/windows-i686/Adapt-setup.exe';
+        label = 'Windows';
+      }
+    } else if (userAgent.includes('mac') || userAgent.includes('os x')) {
+      // macOS - use navigator.userAgentData (modern way)
+      if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+        (navigator.userAgentData.getHighEntropyValues(['architecture']) as Promise<{ architecture: string }>)
+          .then((data) => {
+            if (data.architecture === 'arm64' || data.architecture === 'arm') {
+              updateMacOS(true);
+            } else {
+              updateMacOS(false);
+            }
+          })
+          .catch(() => {
+            // Fallback to userAgent parsing
+            const isAppleSilicon = userAgent.includes('arm64') 
+                || userAgent.includes('aarch64')
+                || !!userAgent.match(/OS X 10_([789]|1[01234])/)
+;
+            updateMacOS(isAppleSilicon);
+          });
+      } else {
+        // Check userAgent for arm64/aarch64
+        const isAppleSilicon = userAgent.includes('arm64') || userAgent.includes('aarch64');
+        updateMacOS(isAppleSilicon);
+      }
+      
+      function updateMacOS(isAppleSilicon: boolean): void {
+        if (isAppleSilicon) {
+          btn.href = 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt-installer.dmg';
+          text.textContent = 'macOS (Apple Silicon)';
+        } else {
+          btn.href = 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt-installer.dmg';
+          text.textContent = 'macOS (Intel)';
+        }
+      }
+      return;
+    } else if (userAgent.includes('linux')) {
+      // Linux
+      href = 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage';
+      label = 'Linux';
+    } else {
+      // Unknown - suggest web app
+      href = 'https://app.adapt.chat';
+      label = 'Web App';
+    }
+
+    if (href) {
+      btn.href = href;
+      text.textContent = label;
+    }
+  }
+
+  // Initialize on page load
+  getRecommendedDownload();
+</script>
