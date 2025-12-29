@@ -62,7 +62,7 @@ const DOWNLOADS = [
 ---
 
 <Layout title="Download Adapt">
-  <main class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
+  <main class="min-h-screen">
     <div class="max-w-[1400px] mx-auto px-6 py-16">
       <!-- Header -->
       <div class="text-center mb-8">
@@ -134,7 +134,6 @@ const DOWNLOADS = [
 </Layout>
 
 <script>
-  // Detect user's operating system and recommend appropriate download
   function getRecommendedDownload(): void {
     const userAgent = navigator.userAgent.toLowerCase();
     const btn = document.getElementById('recommended-btn') as HTMLAnchorElement | null;
@@ -146,7 +145,6 @@ const DOWNLOADS = [
     let label = '';
 
     if (userAgent.includes('win')) {
-      // Windows
       if (userAgent.includes('wow64') || userAgent.includes('x64') || userAgent.includes('x86_64')) {
         href = 'https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe';
         label = 'Windows';
@@ -155,7 +153,6 @@ const DOWNLOADS = [
         label = 'Windows';
       }
     } else if (userAgent.includes('mac') || userAgent.includes('os x')) {
-      // macOS - use navigator.userAgentData (modern way)
       if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
         (navigator.userAgentData.getHighEntropyValues(['architecture']) as Promise<{ architecture: string }>)
           .then((data) => {
@@ -166,7 +163,6 @@ const DOWNLOADS = [
             }
           })
           .catch(() => {
-            // Fallback to userAgent parsing
             const isAppleSilicon = userAgent.includes('arm64') 
                 || userAgent.includes('aarch64')
                 || !!userAgent.match(/OS X 10_([789]|1[01234])/)
@@ -174,7 +170,6 @@ const DOWNLOADS = [
             updateMacOS(isAppleSilicon);
           });
       } else {
-        // Check userAgent for arm64/aarch64
         const isAppleSilicon = userAgent.includes('arm64') || userAgent.includes('aarch64');
         updateMacOS(isAppleSilicon);
       }
@@ -190,13 +185,11 @@ const DOWNLOADS = [
       }
       return;
     } else if (userAgent.includes('linux')) {
-      // Linux
       href = 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage';
       label = 'Linux';
     } else {
-      // Unknown - suggest web app
       href = 'https://app.adapt.chat';
-      label = 'Web App';
+      label = 'Web App'; // cooked
     }
 
     if (href) {
@@ -205,6 +198,5 @@ const DOWNLOADS = [
     }
   }
 
-  // Initialize on page load
   getRecommendedDownload();
 </script>
