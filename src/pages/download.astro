@@ -1,62 +1,71 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const DOWNLOAD_URLS = {
+  windows: 'https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe',
+  macIntel: {
+    app: 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt.app.zip',
+    installer: 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt-installer.dmg',
+  },
+  macAppleSilicon: {
+    app: 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt.app.zip',
+    installer: 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt-installer.dmg',
+  },
+  linux: {
+    deb: 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.deb',
+    appImage: 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage',
+  },
+} as const;
+
 const DOWNLOADS = [
   {
     platform: 'Windows',
     architecture: 'x86_64 (64-bit)',
     format: '.exe',
     details: '',
-    href: 'https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe',
-  },
-  {
-    platform: 'Windows',
-    architecture: 'i686 (32-bit)',
-    format: '.exe',
-    details: '',
-    href: 'https://download.adapt.chat/webclient/windows-i686/Adapt-setup.exe',
+    href: DOWNLOAD_URLS.windows,
   },
   {
     platform: 'macOS',
     architecture: 'Intel (x86_64)',
     format: '.app.zip',
     details: 'App bundle',
-    href: 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt.app.zip',
+    href: DOWNLOAD_URLS.macIntel.app,
   },
   {
     platform: 'macOS',
     architecture: 'Intel (x86_64)',
     format: '.dmg',
     details: 'Installer',
-    href: 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt-installer.dmg',
+    href: DOWNLOAD_URLS.macIntel.installer,
   },
   {
     platform: 'macOS',
     architecture: 'Apple Silicon (aarch64)',
     format: '.app.zip',
     details: 'App bundle',
-    href: 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt.app.zip',
+    href: DOWNLOAD_URLS.macAppleSilicon.app,
   },
   {
     platform: 'macOS',
     architecture: 'Apple Silicon (aarch64)',
     format: '.dmg',
     details: 'Installer',
-    href: 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt-installer.dmg',
+    href: DOWNLOAD_URLS.macAppleSilicon.installer,
   },
   {
     platform: 'Linux',
     architecture: 'x86_64 (AMD64)',
     format: '.deb',
     details: 'Ubuntu, Debian',
-    href: 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.deb',
+    href: DOWNLOAD_URLS.linux.deb,
   },
   {
     platform: 'Linux',
     architecture: 'x86_64 (AMD64)',
     format: 'AppImage',
     details: 'Universal',
-    href: 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage',
+    href: DOWNLOAD_URLS.linux.appImage,
   },
 ] as const;
 ---
@@ -77,7 +86,7 @@ const DOWNLOADS = [
 
       <!-- Recommended Download Section -->
       <div class="mb-24 flex justify-center" id="recommended-section">
-        <a id="recommended-btn" class="btn btn-primary btn-lg" href="#">
+        <a id="recommended-btn" class="btn btn-primary btn-lg" href="#" data-download-urls={JSON.stringify(DOWNLOAD_URLS)}>
           <span>Download for <span id="recommended-text">Your System</span></span>
         </a>
       </div>
@@ -113,7 +122,7 @@ const DOWNLOADS = [
           </table>
         </div>
         <!-- Auto-Update Warning -->
-        <p class="p-4 rounded-xl border border-yellow-600/30 bg-yellow-600/10 text-sm text-white/80 text-center">
+        <p class="p-4 rounded-xl bg-yellow-600/10 text-sm text-white/80 text-center">
           Note: Desktop clients do not auto-update yet, you'll have to reinstall to update Adapt.
         </p>
       </div>
@@ -138,6 +147,7 @@ const DOWNLOADS = [
     const userAgent = navigator.userAgent.toLowerCase();
     const btn = document.getElementById('recommended-btn') as HTMLAnchorElement | null;
     const text = document.getElementById('recommended-text') as HTMLSpanElement | null;
+    const downloadUrls = btn?.dataset.downloadUrls ? JSON.parse(btn.dataset.downloadUrls) : null;
     
     if (!btn || !text) return;
 
@@ -145,13 +155,8 @@ const DOWNLOADS = [
     let label = '';
 
     if (userAgent.includes('win')) {
-      if (userAgent.includes('wow64') || userAgent.includes('x64') || userAgent.includes('x86_64')) {
-        href = 'https://download.adapt.chat/webclient/windows-x86_64/Adapt-setup.exe';
-        label = 'Windows';
-      } else {
-        href = 'https://download.adapt.chat/webclient/windows-i686/Adapt-setup.exe';
-        label = 'Windows';
-      }
+      href = downloadUrls?.windows;
+      label = 'Windows';
     } else if (userAgent.includes('mac') || userAgent.includes('os x')) {
       if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
         (navigator.userAgentData.getHighEntropyValues(['architecture']) as Promise<{ architecture: string }>)
@@ -176,16 +181,16 @@ const DOWNLOADS = [
       
       function updateMacOS(isAppleSilicon: boolean): void {
         if (isAppleSilicon) {
-          btn.href = 'https://download.adapt.chat/webclient/darwin-aarch64/Adapt-installer.dmg';
+          btn.href = downloadUrls?.macAppleSilicon?.installer || '';
           text.textContent = 'macOS (Apple Silicon)';
         } else {
-          btn.href = 'https://download.adapt.chat/webclient/darwin-x86_64/Adapt-installer.dmg';
+          btn.href = downloadUrls?.macIntel?.installer || '';
           text.textContent = 'macOS (Intel)';
         }
       }
       return;
     } else if (userAgent.includes('linux')) {
-      href = 'https://download.adapt.chat/webclient/linux-x86_64/Adapt.AppImage';
+      href = downloadUrls?.linux?.appImage || '';
       label = 'Linux';
     } else {
       href = 'https://app.adapt.chat';
