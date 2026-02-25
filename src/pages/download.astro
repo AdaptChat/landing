@@ -85,14 +85,23 @@ const DOWNLOADS = [
       </div>
 
       <!-- Recommended Download Section -->
-      <div class="mb-24 flex justify-center" id="recommended-section">
+      <div class="flex justify-center" id="recommended-section">
         <a id="recommended-btn" class="btn btn-primary btn-lg" href="#" data-download-urls={JSON.stringify(DOWNLOAD_URLS)}>
           <span>Download for <span id="recommended-text">Your System</span></span>
         </a>
       </div>
 
+      <p class="mt-4 p-4 text-white/80 text-center md:hidden block">
+        <b>Mobile users:</b> The web client is a 
+        <a href="//www.installpwa.com/from/app.adapt.chat" class="underline-offset-2 underline">
+          fully responsive PWA (Progressive Web App)! 
+        </a>
+        <br />
+        (Native builds coming soon)
+      </p>
+
       <!-- All Platforms Section -->
-      <div class="mx-4">
+      <div class="mt-20 mx-4">
         <h2 class="text-4xl font-bold font-title mb-6 text-center">All Desktop Builds</h2>
         
         <div class="overflow-x-auto border border-white/10 rounded-xl mb-4">
@@ -125,6 +134,16 @@ const DOWNLOADS = [
         <p class="p-4 rounded-xl bg-yellow-600/10 text-sm text-white/80 text-center">
           Note: Desktop clients do not auto-update yet, you'll have to reinstall to update Adapt.
         </p>
+        <p class="mt-4 p-4 rounded-xl bg-yellow-600/10 text-sm text-white/80 text-center" id="mac-os-warning"> 
+          <b>Note for macOS users:</b> You may get a warning about the app being damaged. Without an Apple Developer
+          license, I am unable to sign the macOS builds. In a terminal, run:
+          <br />
+          <code>sudo xattr -r -d com.apple.quarantine /path/to/Adapt.app</code>
+          <br />
+          <br />
+          Replace <code>/path/to/Adapt.app</code> with the actual path to the Adapt app bundle 
+          (for example <code>/Applications/Adapt.app</code> if you moved it to your Applications folder). 
+        </p>
       </div>
 
       <!-- Web App Section -->
@@ -138,6 +157,7 @@ const DOWNLOADS = [
           Open Web Client
         </a>
       </div>
+
     </div>
   </main>
 </Layout>
